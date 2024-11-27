@@ -2,13 +2,17 @@ package edu.iesam.examaad1eval
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import edu.iesam.examaad1eval.features.ex1.feature.data.DataRepository
 import edu.iesam.examaad1eval.features.ex1.feature.data.local.ItemXmlLocalDataSource
 import edu.iesam.examaad1eval.features.ex1.feature.data.local.ServicesXmlLocalDataSource
 import edu.iesam.examaad1eval.features.ex1.feature.data.local.UserXmlLocalDataSource
 import edu.iesam.examaad1eval.features.ex1.feature.data.remote.MockEx1RemoteDataSource
+import edu.iesam.examaad1eval.features.ex2.core.room.AppDatabase
+import edu.iesam.examaad1eval.features.ex2.core.room.DataBaseProvider
 import edu.iesam.examaad1eval.features.ex2.feature.data.GamesDataRepository
+import edu.iesam.examaad1eval.features.ex2.feature.data.db.GameDao
 import edu.iesam.examaad1eval.features.ex2.feature.data.db.GameDbDataSource
 import edu.iesam.examaad1eval.features.ex2.feature.data.remote.GamesMockRemoteDataSource
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -38,7 +42,9 @@ class MainActivity : AppCompatActivity() {
 
     @OptIn(DelicateCoroutinesApi::class)
     private fun executeExercise2() {
-        GlobalScope.launch (Dispatchers.IO){
+        val roomRepository = GameDbDataSource(gameDao = DataBaseProvider.provideDatabase(this).userDao())
+        GlobalScope.launch(Dispatchers.IO) {
+            roomRepository.getGames()
 
         }
     }

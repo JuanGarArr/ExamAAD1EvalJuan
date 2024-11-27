@@ -9,7 +9,6 @@ class GamesDataRepository (private val remoteDataSource: GamesMockRemoteDataSour
 
     override fun getGames(): List<Game> {
         return remoteDataSource.getGames()
-
     }
 
 
