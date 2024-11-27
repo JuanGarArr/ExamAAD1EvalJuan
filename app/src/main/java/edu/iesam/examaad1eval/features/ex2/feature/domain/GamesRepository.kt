@@ -1,5 +1,5 @@
 package edu.iesam.examaad1eval.features.ex2.feature.domain
 
-interface Ex2Repository {
+interface GamesRepository {
     fun getGames(): List<Game>
 }
