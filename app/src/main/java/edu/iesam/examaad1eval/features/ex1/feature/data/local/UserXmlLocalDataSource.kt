@@ -6,6 +6,7 @@ import edu.iesam.examaad1eval.features.ex1.feature.domain.User
 
 class UserXmlLocalDataSource(context: Context) {
 
+
     val sharedPref = context.getSharedPreferences(
         context.getString(R.string.shared_name), Context.MODE_PRIVATE
     )
