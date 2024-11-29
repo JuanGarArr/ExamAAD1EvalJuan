@@ -7,8 +7,8 @@ import edu.iesam.examaad1eval.features.ex2.feature.data.db.Converter
 import edu.iesam.examaad1eval.features.ex2.feature.data.db.GameDao
 import edu.iesam.examaad1eval.features.ex2.feature.data.db.GameEntity
 
-@Database(entities = [GameEntity::class], version = 1, exportSchema = false)
+@Database(entities = [GameEntity::class], version = 2, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): GameDao
+    abstract fun gameDao(): GameDao
 }
