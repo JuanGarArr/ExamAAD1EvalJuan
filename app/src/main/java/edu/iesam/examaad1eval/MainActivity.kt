@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         val room = GamesDataRepository(GamesMockRemoteDataSource(), GameDbDataSource(DataBaseProvider.provideDatabase(this).gameDao()))
         GlobalScope.launch(Dispatchers.IO) {
             room.getGames()
+            Log.d("@dev", room.getGames().toString())
+            Log.d("@dev", room.getGames().size.toString())
 
         }
     }

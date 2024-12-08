@@ -14,4 +14,6 @@ interface GameDao {
     @Query("SELECT * FROM $TABLE_NAME_GAMES")
     fun getGames(): List<GameEntity>
 
+    @Query("DELETE FROM $TABLE_NAME_GAMES")
+    fun deleteGames()
 }

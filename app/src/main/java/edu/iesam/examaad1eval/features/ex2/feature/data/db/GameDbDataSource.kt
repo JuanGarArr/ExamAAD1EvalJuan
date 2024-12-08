@@ -17,4 +17,8 @@ class GameDbDataSource(private val gameDao: GameDao) {
        }
     }
 
+    fun delete(){
+        gameDao.deleteGames()
+    }
+
 }
