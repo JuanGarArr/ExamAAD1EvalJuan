@@ -11,21 +11,24 @@ class GamesDataRepository(
 ) : GamesRepository {
 
     override fun getGames(): List<Game> {
-        val gameList = mutableListOf<Game>()
-        val user = local.getGames()
+        val gameList = ArrayList<Game>()
+        val localGames = local.getGames()
 
-        user.forEach {
-            gameList.add(it)
-        }
-
-        val games = remote.getGames()
-        games.forEach {
-            if (gameList.size < 7) {
-                gameList.add(it)
+        if (localGames.isEmpty()) {
+            val remoteGames = remote.getGames()
+            local.saveGames(remoteGames.take(4))
+            gameList.addAll(remoteGames)
+            return gameList
+        } else {
+            val remoteGames = remote.getGames()
+            for (remoteGame in remoteGames) {
+                if (!localGames.contains(remoteGame)) {
+                    gameList.add(remoteGame)
+                }
             }
+            local.saveGames(gameList)
+            return gameList
+
         }
-
-        return gameList
-
     }
 }

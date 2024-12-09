@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        executeExercise1()
         executeExercise2()
 
     }
@@ -42,7 +41,9 @@ class MainActivity : AppCompatActivity() {
     private fun executeExercise2() {
         val room = GamesDataRepository(GamesMockRemoteDataSource(), GameDbDataSource(DataBaseProvider.provideDatabase(this).gameDao()))
         GlobalScope.launch(Dispatchers.IO) {
+
             room.getGames()
+
             Log.d("@dev", room.getGames().toString())
             Log.d("@dev", room.getGames().size.toString())
 
